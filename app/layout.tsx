@@ -1,8 +1,12 @@
+import Hydrate from './components/Hydrate'
 import Navbar from './components/Navbar'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import './globals.css'
+import { Lato, Roboto } from 'next/font/google'
 
+
+const lato = Lato({ weight: ["400", "700"], subsets: ["latin"] })
 
 export const metadata = {
   title: 'Ecommerce',
@@ -19,9 +23,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className='mx-64'>
-        <Navbar user={session?.user} expires={session?.expires as string} />
-        {children}
+      <body className={`mx-4 lg:mx-48 ${lato.className}`}>
+        <Hydrate>
+          <Navbar user={session?.user} expires={session?.expires as string} />
+          {children}
+        </Hydrate>
       </body>
     </html>
   )
