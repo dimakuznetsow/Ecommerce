@@ -1,13 +1,15 @@
 import Image from "next/image"
 import { SearchParamType } from "@/types/SearchParamType"
 import formatPrice from "@/util/PriceFormat"
+import AddCart from "./AddCart"
+
 
 
 
 function Product({ searchParams }: SearchParamType) {
 
     return (
-        <div className="flex justify-between gap-24 p-12 text-gray-800">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-24  text-gray-800">
             <Image
                 src={searchParams.image}
                 alt={searchParams.name}
@@ -21,9 +23,7 @@ function Product({ searchParams }: SearchParamType) {
                 <div className="flex gap-2">
                     <p className="font-bold text-blue-800">{searchParams.unit_amount !== null ? formatPrice(searchParams.unit_amount) : "N/A"} </p>
                 </div>
-                <button className="my-12 bg-blue-800 text-white py-2 px-4 font-medium rounded-sm">
-                    Add to cart
-                </button>
+                <AddCart {...searchParams} />
             </div >
         </div >
     )

@@ -2,6 +2,7 @@ import formatPrice from "@/util/PriceFormat"
 import Image from "next/image"
 import { ProductType } from "@/types/ProductType"
 import Link from "next/link"
+import AddCart from "../product/[id]/AddCart"
 
 
 function Product({
@@ -26,6 +27,7 @@ function Product({
                 <h1>{name}</h1>
                 <h2 className="text-sm text-blue-800">{unit_amount !== null ? formatPrice(unit_amount) : "N/A"}</h2>
             </div>
+            <AddCart id={id} name={name} unit_amount={unit_amount} image={image} />
         </div >
     )
 }
