@@ -8,6 +8,7 @@ import cart from "@/public/Cart.png"
 import delivery from "@/public/Delivery.jpeg"
 import { AnimatePresence, motion } from "framer-motion"
 import Checkout from "./Checkout"
+import OrderConfirmed from "./OrderConfirmed"
 
 
 
@@ -20,22 +21,42 @@ function Cart() {
         return acc + item.unit_amount! * item.quantity!
     }, 0)
 
+
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
 
-            onClick={() => cartStore.toggleCart()}
+            onClick={cartStore.onCheckout === "success" || cartStore.onCheckout === "checkout" ? () => {
+                cartStore.toggleCart();
+                setTimeout(() => {
+                    cartStore.setCheckout("cart");
+                }, 1000);
+            } : () => cartStore.toggleCart()}
             className="fixed w-full h-screen left-0 top-0 bg-black/30">
             <div onClick={(e) => e.stopPropagation()} className="bg-white absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-scroll text-gray-800">
-                <button onClick={() => { cartStore.toggleCart() }} className="text-blue-800 font-bold">Back to store</button>
-
+                {cartStore.onCheckout === "cart" &&
+                    (<button
+                        onClick={() => { cartStore.toggleCart() }}
+                        className="text-blue-800 font-bold mb-4">
+                        Back to store
+                    </button>)
+                }
+                {cartStore.onCheckout === "checkout" &&
+                    (<button
+                        onClick={() => { cartStore.setCheckout("cart") }}
+                        className="text-blue-800 font-bold mb-4">
+                        Back to cart
+                    </button>)
+                }
                 {cartStore.onCheckout === "cart" && (
                     <>
                         {cartStore.cart.map((item) => (
                             <div key={item.id} className="flex py-4 gap-4 w-full">
                                 <Image
+                                    priority={false}
                                     src={item.image}
                                     alt={item.name}
                                     width={72}
@@ -95,6 +116,7 @@ function Cart() {
                         {cartStore.cart.length > 0 && (<div className="flex py-4 gap-4 w-full">
 
                             <Image
+                                priority={false}
                                 src={delivery}
                                 alt="delivery"
                                 width={72}
@@ -119,9 +141,9 @@ function Cart() {
                         </div>)}
                     </>
                 )}
-                {cartStore.cart.length > 0 && (
+                {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
                     <>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between mt-4">
                             <p className="text-lg font-bold">Total: </p>
                             <p className="text-lg font-bold">
                                 {totalPrice !== null
@@ -136,10 +158,14 @@ function Cart() {
                             Checkout
                         </button>
                     </>
-                )}
+                )
+                    : null
+                }
                 {cartStore.onCheckout === "checkout" && <Checkout />}
+                {cartStore.onCheckout === "success" && <OrderConfirmed />}
+
                 <AnimatePresence>
-                    {!cartStore.cart.length && (
+                    {!cartStore.cart.length && cartStore.onCheckout === "cart" && (
                         <motion.div
                             animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
                             initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
@@ -147,6 +173,7 @@ function Cart() {
 
                             className="flex flex-col items-center pt-28">
                             <Image
+                                priority={false}
                                 src={cart}
                                 alt="empty-cart"
                                 width={400}
