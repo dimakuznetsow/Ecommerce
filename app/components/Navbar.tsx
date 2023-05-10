@@ -1,7 +1,7 @@
 'use client'
 
 import { Session } from "next-auth"
-import { signIn } from "next-auth/react"
+import { signIn, signOut } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import Cart from "./Cart"
@@ -44,12 +44,44 @@ function Navbar({ user }: Session) {
 
                 {user && (
                     <li>
-                        <Image
-                            src={user?.image as string}
-                            alt={user.name as string}
-                            width={36}
-                            height={36}
-                            className="rounded-full" />
+                        <div className="dropdown dropdown-end cursor-pointer">
+                            <Image
+                                src={user?.image as string}
+                                alt={user.name as string}
+                                width={36}
+                                height={36}
+                                className="rounded-full"
+                                tabIndex={0}
+                            />
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content menu  p-4 space-y-4 rounded-box w-72 bg-base-200 shadow"
+                            >
+                                <Link
+                                    className="hover:bg-base-300 p-4 rounded-md"
+                                    href={'/dashboard'}
+                                    onClick={() => {
+                                        if (document.activeElement instanceof HTMLElement) {
+                                            document.activeElement.blur()
+                                        }
+                                    }}
+                                >
+                                    Orders
+                                </Link>
+                                <li
+                                    onClick={() => {
+                                        if (document.activeElement instanceof HTMLElement) {
+                                            document.activeElement.blur()
+                                        }
+                                        signOut()
+                                    }}
+                                    className="hover:bg-base-300 p-4 rounded-md"
+                                >
+                                    Sign out
+                                </li>
+
+                            </ul>
+                        </div>
                     </li>
                 )}
             </ul>

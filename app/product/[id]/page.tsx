@@ -16,12 +16,12 @@ function Product({ searchParams }: SearchParamType) {
                 width={400}
                 height={400}
             />
-            <div className="font-medium text-gray-800">
+            <div className="font-medium">
                 <h1 className="text-2xl font-medium py-2">{searchParams.name}</h1>
                 <p className="py-2">{searchParams.description}</p>
 
                 <div className="flex gap-2">
-                    <p className="font-bold text-blue-800">{searchParams.unit_amount !== null ? formatPrice(searchParams.unit_amount) : "N/A"} </p>
+                    <p className="font-bold text-primary">{searchParams.unit_amount !== null ? formatPrice(searchParams.unit_amount) : "N/A"} </p>
                 </div>
                 <AddCart {...searchParams} />
             </div >
