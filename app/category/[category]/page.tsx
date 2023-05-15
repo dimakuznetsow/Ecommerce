@@ -37,6 +37,11 @@ const getProducts = async () => {
 
 export default async function Category({ searchParams }) {
     const products = await getProducts()
+    if (!products) {
+        return (
+            <div>no products</div>
+        )
+    }
     const filteredProducts = products.filter(product => product.metadata.category === searchParams.category)
 
     return (
