@@ -1,16 +1,17 @@
-import { PrismaClient } from "@prisma/client";
+// import { prisma } from "@/util/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import formatPrice from "@/util/PriceFormat";
 import Image from "next/image";
 import { format, formatDistanceToNow } from 'date-fns';
+import { PrismaClient } from "@prisma/client";
 
 
+const prisma = new PrismaClient()
 
 export const revalidate = 0
 
 const fetchOrders = async () => {
-    const prisma = new PrismaClient();
     const user = await getServerSession(authOptions);
     if (!user) {
         return null
@@ -35,7 +36,7 @@ async function Dashboard() {
         return <div>No orders yet</div>
     }
     return (
-        <div className="text-gray-800">
+        <div className="">
             <h1 className="font-bold">Orders:</h1>
             <div className="font-medium">
                 {orders.map((order) => {
@@ -66,7 +67,7 @@ async function Dashboard() {
                                         <h2 className="py-2">{product.name}</h2>
                                         <div className="flex items-center gap-4">
                                             <Image
-                                                priority={false}
+                                                priority={true}
                                                 src={product.image!}
                                                 alt={product.name}
                                                 width={72}

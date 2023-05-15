@@ -2,7 +2,7 @@
 
 import { useCartStore } from "@/store";
 import formatPrice from "@/util/PriceFormat";
-import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { PaymentElement, useStripe, useElements, AddressElement, LinkAuthenticationElement } from "@stripe/react-stripe-js";
 import { useState, useEffect } from "react"
 
 
@@ -56,8 +56,16 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
 
 
     return (
-        <form onSubmit={handleSubmitForm} id='payment-form' className="text-gray-800">
+        <form onSubmit={handleSubmitForm} id='payment-form' className="">
+            <LinkAuthenticationElement
+                id="link-authentication-element" />
             <PaymentElement id='payment-element' options={{ layout: "tabs" }} />
+            <AddressElement id="address-element" options={{
+                mode: 'billing',
+                fields: {
+                    phone: 'always',
+                },
+            }} />
             <div className="flex justify-between mt-4">
                 <p className="text-lg font-bold">Total: </p>
                 <p className="text-lg font-bold">
@@ -65,7 +73,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
                 </p>
             </div>
             <button
-                className="py-2 px-4 mt-4 w-full bg-blue-800 text-white rounded-sm disabled:opacity-60"
+                className="py-2 px-4 mt-4 w-full bg-primary text-white rounded-sm disabled:opacity-60"
                 id='submit'
                 disabled={isLoading || !stripe || !elements}
             >

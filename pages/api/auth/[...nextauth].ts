@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+// import { prisma } from "@/util/prisma";
 import { PrismaClient } from "@prisma/client";
 import Stripe from "stripe";
 

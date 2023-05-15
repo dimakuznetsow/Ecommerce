@@ -17,7 +17,7 @@ function OrderConfirmed() {
             <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="flex items-center justify-center my-12 text-gray-800"
+                className="flex items-center justify-center my-12"
             >
                 <div className="p-12 text-center ">
                     <h1 className="text-xl font-medium">Your order has been placed!</h1>
@@ -33,7 +33,7 @@ function OrderConfirmed() {
                                 cartStore.setCheckout("cart");
                             }, 1000);
                         }}
-                        className="py-2 px-4 bg-blue-800 text-white font-medium"
+                        className="py-2 px-4 bg-primary text-white font-medium"
                     >
                         Check your order
                     </button>

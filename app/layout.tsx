@@ -3,14 +3,15 @@ import Navbar from './components/Navbar'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import './globals.css'
-import { Lato, Roboto } from 'next/font/google'
+import { Lato } from 'next/font/google'
+import Footer from './components/Footer'
 
 
-const lato = Lato({ weight: ["400", "700"], subsets: ["latin"] })
+const lato = Lato({ weight: ["400", "700", "900"], subsets: ["latin"] })
 
 export const metadata = {
-  title: 'Ecommerce',
-  description: 'web store',
+  title: 'aleph',
+  description: 'Kosher grocery',
 }
 
 export default async function RootLayout({
@@ -22,13 +23,12 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en" data-theme="light">
-      <body className={`mx-4 lg:mx-48 ${lato.className}`}>
-        <Hydrate>
-          <Navbar user={session?.user} expires={session?.expires as string} />
-          {children}
-        </Hydrate>
-      </body>
+    <html lang="en" className={`${lato.className} `} >
+      <Hydrate>
+        <Navbar user={session?.user} expires={session?.expires as string} />
+        {children}
+        <Footer />
+      </Hydrate>
     </html>
   )
 }

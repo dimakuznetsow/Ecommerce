@@ -11,15 +11,19 @@ import { AnimatePresence, motion } from "framer-motion"
 
 
 
+
 function Navbar({ user }: Session) {
     const cartStore = useCartStore()
 
     return (
-        <nav className="flex justify-between items-center py-12">
+        <nav className="flex justify-between items-center py-12 px-4 lg:px-48">
             <Link href={"/"}>
-                <h1 className="text-blue-800 text-4xl font-black">א<span className="text-4xl font-bold">leph</span></h1>
+                <h1 className="text-primary text-4xl font-black">א<span className="text-4xl font-bold">leph</span></h1>
             </Link>
+
+
             <ul className="flex items-center gap-12">
+
                 {/* toggle the cart */}
                 <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
                     <AiTwotoneShopping />
@@ -29,7 +33,7 @@ function Navbar({ user }: Session) {
                                 animate={{ scale: 1 }}
                                 initial={{ scale: 0 }}
                                 exit={{ scale: 0 }}
-                                className="bg-blue-800 text-white text-sm font-bold w-5 h-5  rounded-full absolute left-4 bottom-4 text-center">
+                                className="bg-primary text-white text-sm font-bold w-5 h-5  rounded-full absolute left-4 bottom-4 text-center">
                                 {cartStore.cart.length}
                             </motion.span>
                         )}
@@ -37,13 +41,13 @@ function Navbar({ user }: Session) {
                 </li>
                 {/* if no user */}
                 {!user && (
-                    <li className="bg-blue-800 text-white py-2 px-4 rounded-sm">
+                    <li className="bg-primary text-white py-2 px-4 rounded-sm">
                         <button onClick={() => signIn()}>Sign in</button>
                     </li>
                 )}
 
                 {user && (
-                    <li>
+                    <li className="h-9">
                         <div className="dropdown dropdown-end cursor-pointer">
                             <Image
                                 src={user?.image as string}
@@ -57,6 +61,7 @@ function Navbar({ user }: Session) {
                                 tabIndex={0}
                                 className="dropdown-content menu  p-4 space-y-4 rounded-box w-72 bg-base-200 shadow"
                             >
+
                                 <Link
                                     className="hover:bg-base-300 p-4 rounded-md"
                                     href={'/dashboard'}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCartStore } from "@/store"
+import { useCartStore, useThemeStore } from "@/store"
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js"
 import { useRouter } from "next/navigation"
@@ -15,6 +15,8 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 
 function Checkout() {
     const cartStore = useCartStore()
+    const themeStore = useThemeStore()
+
     const router = useRouter()
     const [clientSecret, setClientSecret] = useState("")
 
@@ -40,7 +42,7 @@ function Checkout() {
     const options: StripeElementsOptions = {
         clientSecret,
         appearance: {
-            theme: 'stripe',
+            theme: `${themeStore.mode === "light" ? "stripe" : "night"}`,
             labels: 'floating'
         }
 
