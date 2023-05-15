@@ -15,6 +15,10 @@ type CartState = {
   onCheckout: string;
   setCheckout: (val: string) => void;
 };
+type ThemeState = {
+  mode: "light" | "dark";
+  toggleMode: (theme: "light" | "dark") => void;
+};
 
 export const useCartStore = create<CartState>()(
   persist(
@@ -75,5 +79,15 @@ export const useCartStore = create<CartState>()(
       setCheckout: (val) => set((state) => ({ onCheckout: val })),
     }),
     { name: "cart-store" }
+  )
+);
+
+export const useThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      mode: "light",
+      toggleMode: (theme) => set((state) => ({ mode: theme })),
+    }),
+    { name: "theme-store" }
   )
 );

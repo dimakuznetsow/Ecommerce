@@ -35,19 +35,19 @@ function Cart() {
                     cartStore.setCheckout("cart");
                 }, 1000);
             } : () => cartStore.toggleCart()}
-            className="fixed w-full h-screen left-0 top-0 bg-black/30">
-            <div onClick={(e) => e.stopPropagation()} className="bg-white absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-scroll text-gray-800">
+            className="fixed w-full h-screen left-0 top-0 bg-black/30 z-10">
+            <div onClick={(e) => e.stopPropagation()} className="bg-base-100 absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-scroll">
                 {cartStore.onCheckout === "cart" &&
                     (<button
                         onClick={() => { cartStore.toggleCart() }}
-                        className="text-blue-800 font-bold mb-4">
+                        className="text-primary font-bold mb-4">
                         Back to store
                     </button>)
                 }
                 {cartStore.onCheckout === "checkout" &&
                     (<button
                         onClick={() => { cartStore.setCheckout("cart") }}
-                        className="text-blue-800 font-bold mb-4">
+                        className="text-primary font-bold mb-4">
                         Back to cart
                     </button>)
                 }
@@ -56,7 +56,7 @@ function Cart() {
                         {cartStore.cart.map((item) => (
                             <div key={item.id} className="flex py-4 gap-4 w-full">
                                 <Image
-                                    priority={false}
+                                    priority={true}
                                     src={item.image}
                                     alt={item.name}
                                     width={72}
@@ -68,7 +68,7 @@ function Cart() {
                                             {item.name}
                                         </h2>
 
-                                        <button className="text-2xl text-red-600 ml-2" onClick={() => cartStore.deleteProduct({
+                                        <button className="text-2xl text-error ml-2" onClick={() => cartStore.deleteProduct({
                                             id: item.id,
                                             image: item.image,
                                             name: item.name,
@@ -116,7 +116,7 @@ function Cart() {
                         {cartStore.cart.length > 0 && (<div className="flex py-4 gap-4 w-full">
 
                             <Image
-                                priority={false}
+                                priority={true}
                                 src={delivery}
                                 alt="delivery"
                                 width={72}
@@ -131,8 +131,8 @@ function Cart() {
                                         <p className="text-sm">${`8.99`}</p>
                                     ) : (
                                         <p className="text-sm">
-                                            <span className="line-through text-gray-400">${`8.99`}</span>
-                                            <span className="text-gray-800 ml-1">{` $0`}</span>
+                                            <span className="line-through">${`8.99`}</span>
+                                            <span className="ml-1">{` $0`}</span>
                                         </p>
                                     )}
                                 </div>
@@ -153,7 +153,7 @@ function Cart() {
                         </div>
                         <button
                             onClick={() => cartStore.setCheckout("checkout")}
-                            className="py-2 mt-4 bg-blue-800 text-white w-full rounded-sm"
+                            className="py-2 mt-4 bg-primary text-white w-full rounded-sm"
                         >
                             Checkout
                         </button>
@@ -173,7 +173,7 @@ function Cart() {
 
                             className="flex flex-col items-center pt-28">
                             <Image
-                                priority={false}
+                                priority={true}
                                 src={cart}
                                 alt="empty-cart"
                                 width={400}
