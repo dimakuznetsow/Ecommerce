@@ -11,6 +11,8 @@ export default async function Home() {
     <>
       <Carousel />
       <Categories />
+      <Categories />
+
 
     </>
   )
