@@ -28,9 +28,9 @@ export default async function Categories() {
         <>
             <div className='flex justify-between mx-4 lg:mx-48 items-end  mb-2' >
                 <h1 className='text-3xl font-black'>SMALL BITES:</h1>
-                <Link href={{ pathname: `/category/all` }}>
+                {/* <Link href={{ pathname: `/category/all` }}>
                     <div className="badge badge-outline">All ></div>
-                </Link>
+                </Link> */}
 
             </div>
             <main className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
