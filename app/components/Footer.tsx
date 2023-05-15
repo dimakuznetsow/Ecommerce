@@ -141,7 +141,7 @@ function Footer() {
                         </li>
                     </ul>
                 </div>
-                <div className="flex justify-center mx-4 pt-4">
+                <div className="flex justify-center pt-4">
                     <div className="flex gap-1">
                         <Image
                             src={visa}

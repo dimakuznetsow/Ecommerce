@@ -7,6 +7,7 @@ const getCategories = async () => {
         apiVersion: "2022-11-15"
     })
     const products = await stripe.products.list()
+    console.log(products)
 
 
     const categories = await Promise.all(
