@@ -30,6 +30,7 @@
     "stripe": "^11.11.0",
     "ts-node": "^10.9.1",
     "typescript": "5.0.4",
+    "vercel": "^29.3.0",
     "zustand": "^4.3.3"
   },
   "devDependencies": {
