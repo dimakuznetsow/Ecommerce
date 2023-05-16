@@ -36,7 +36,6 @@ function Checkout() {
                 return res.json();
             } catch (error) {
                 console.error("Error parsing JSON:", error);
-                // Handle the error accordingly, e.g., show an error message or redirect to an error page
             }
         }).then((data) => {
             setClientSecret(data.paymentIntent.client_secret);
