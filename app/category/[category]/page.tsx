@@ -1,8 +1,4 @@
-import formatPrice from "@/util/PriceFormat"
-import Image from "next/image"
-import { ProductType } from "@/types/ProductType"
-import Link from "next/link"
-import AddCart from "../../product/[id]/AddCart"
+import { SearchParamType } from "@/types/SearchParamType"
 import Stripe from "stripe"
 import Product from "../../components/Product"
 
@@ -35,7 +31,7 @@ const getProducts = async () => {
 
 }
 
-export default async function Category({ searchParams }) {
+export default async function Category({ searchParams }: SearchParamType) {
     const products = await getProducts()
 
     const filteredProducts = products.filter(product => product.metadata.category === searchParams.category)
