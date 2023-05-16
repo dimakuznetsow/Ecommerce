@@ -29,10 +29,15 @@ function Checkout() {
                 payment_intent_id: cartStore.paymentIntent
             })
         }).then((res) => {
-            if (res.status === 403) {
-                return router.push("/api/auth/signin")
+            try {
+                if (res.status === 403) {
+                    return router.push("/api/auth/signin");
+                }
+                return res.json();
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+                // Handle the error accordingly, e.g., show an error message or redirect to an error page
             }
-            return res.json()
         }).then((data) => {
             setClientSecret(data.paymentIntent.client_secret);
             cartStore.setPaymentIntent(data.paymentIntent.id)
