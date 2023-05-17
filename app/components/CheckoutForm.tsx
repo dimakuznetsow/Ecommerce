@@ -57,6 +57,10 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
 
     return (
         <form onSubmit={handleSubmitForm} id='payment-form' className="">
+            <PaymentElement id='payment-element' options={{ layout: "accordion" }} />
+            <AddressElement id="address-element" options={{
+                mode: 'billing',
+            }} />
             <div className="flex justify-between mt-4">
                 <p className="text-lg font-bold">Total: </p>
                 <p className="text-lg font-bold">
@@ -70,13 +74,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
             >
                 <span id="button-text">{isLoading ? <span>Processing...</span> : <span>Pay</span>}</span>
             </button>
-            <PaymentElement id='payment-element' options={{ layout: "accordion" }} />
-            <AddressElement id="address-element" options={{
-                mode: 'billing',
-                fields: {
-                    phone: 'always',
-                },
-            }} />
 
         </form>
     )
