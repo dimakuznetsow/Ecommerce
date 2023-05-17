@@ -57,6 +57,13 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
 
     return (
         <form onSubmit={handleSubmitForm} id='payment-form' className="">
+            <button
+                className="py-2 px-4 mt-4 w-full bg-primary text-white rounded-sm disabled:opacity-60"
+                id='submit'
+                disabled={isLoading || !stripe || !elements}
+            >
+                <span id="button-text">{isLoading ? <span>Processing...</span> : <span>Pay</span>}</span>
+            </button>
             <PaymentElement id='payment-element' options={{ layout: "accordion" }} />
             <AddressElement id="address-element" options={{
                 mode: 'billing',
@@ -70,13 +77,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
                     {totalPrice !== null ? formatPrice(totalPrice) : "N/A"}
                 </p>
             </div>
-            <button
-                className="py-2 px-4 mt-4 w-full bg-primary text-white rounded-sm disabled:opacity-60"
-                id='submit'
-                disabled={isLoading || !stripe || !elements}
-            >
-                <span id="button-text">{isLoading ? <span>Processing...</span> : <span>Pay</span>}</span>
-            </button>
 
         </form>
     )
