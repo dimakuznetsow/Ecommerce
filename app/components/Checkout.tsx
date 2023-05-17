@@ -63,7 +63,7 @@ export default function Checkout() {
         <div>
             {!clientSecret && <StripeAnimation />}
             {clientSecret && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="overflow-auto">
                     <Elements options={options} stripe={stripePromise}>
                         <CheckoutForm clientSecret={clientSecret} />
                     </Elements>
