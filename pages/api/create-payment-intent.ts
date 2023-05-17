@@ -30,7 +30,7 @@ export default async function handler(
 ) {
   // get user
   const session = await getServerSession(req, res, authOptions);
-  if (!session?.user) {
+  if (!session?.user || !session) {
     res.status(403).json({ message: "Not logged in" });
   }
   // get data from body
