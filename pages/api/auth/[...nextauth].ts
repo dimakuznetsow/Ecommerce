@@ -15,20 +15,18 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    // add another provider
   ],
   events: {
     createUser: async ({ user }) => {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
         apiVersion: "2022-11-15",
       });
-      // let's create a stripe customer
+      // create a stripe customer
 
       const costumer = await stripe.customers.create({
         email: user.email || undefined,
         name: user.name || undefined,
       });
-      // also update our prisma user with the stripecustomerid
 
       await prisma.user.update({
         where: { id: user.id },
