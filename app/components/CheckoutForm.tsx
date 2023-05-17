@@ -71,7 +71,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
                 </p>
             </div>
             <button
-                className="py-2 px-4 mt-14 w-full bg-primary text-white rounded-sm disabled:opacity-60"
+                className="py-2 px-4 mt-4 w-full bg-primary text-white rounded-sm disabled:opacity-60"
                 id='submit'
                 disabled={isLoading || !stripe || !elements}
             >
