@@ -57,8 +57,14 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
 
     return (
         <form onSubmit={handleSubmitForm} id='payment-form' className="">
+            <div className="flex justify-between mt-4">
+                <p className="text-lg font-bold">Total: </p>
+                <p className="text-lg font-bold">
+                    {totalPrice !== null ? formatPrice(totalPrice) : "N/A"}
+                </p>
+            </div>
             <button
-                className="py-2 px-4 mt-4 w-full bg-primary text-white rounded-sm disabled:opacity-60"
+                className="py-2 px-4 mb-4 w-full bg-primary text-white rounded-sm disabled:opacity-60"
                 id='submit'
                 disabled={isLoading || !stripe || !elements}
             >
@@ -71,12 +77,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
                     phone: 'always',
                 },
             }} />
-            <div className="flex justify-between mt-4">
-                <p className="text-lg font-bold">Total: </p>
-                <p className="text-lg font-bold">
-                    {totalPrice !== null ? formatPrice(totalPrice) : "N/A"}
-                </p>
-            </div>
 
         </form>
     )
