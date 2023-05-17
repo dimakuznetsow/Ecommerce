@@ -29,12 +29,14 @@ function Checkout() {
                 payment_intent_id: cartStore.paymentIntent
             })
         }).then((res) => {
+            const responseClone = res.clone(); // 2
             try {
                 if (res.status === 403) {
                     return router.push("/api/auth/signin");
                 }
                 return res.json();
             } catch (error) {
+                responseClone.text()
                 console.error("Error parsing JSON:", error);
             }
         }).then((data) => {

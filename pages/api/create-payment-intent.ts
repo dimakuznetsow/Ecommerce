@@ -30,7 +30,7 @@ export default async function handler(
 ) {
   // get user
   const session = await getServerSession(req, res, authOptions);
-  if (!session?.user || !session) {
+  if (!session?.user) {
     res.status(403).json({ message: "Not logged in" });
   }
   // get data from body
@@ -38,7 +38,7 @@ export default async function handler(
   const total = calculateTotalPrice(items);
 
   const orderData = {
-    user: { connect: { id: session!.user?.id } },
+    user: { connect: { id: session.user?.id } },
     amount: total,
     currency: "usd",
     status: "pending",
