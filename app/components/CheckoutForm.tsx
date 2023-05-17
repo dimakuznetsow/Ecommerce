@@ -56,8 +56,8 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
 
 
     return (
-        <form onSubmit={handleSubmitForm} id='payment-form' className="overflow-auto">
-            <PaymentElement id='payment-element' options={{ layout: "auto" }} />
+        <form onSubmit={handleSubmitForm} id='payment-form' className="">
+            <PaymentElement id='payment-element' options={{ layout: "accordion" }} />
             <AddressElement id="address-element" options={{
                 mode: 'billing',
                 fields: {
