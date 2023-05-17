@@ -24,13 +24,13 @@ export default function Checkout() {
     >("stripe")
 
     useEffect(() => {
-        //Set the theme of stripe
+        // set the theme of stripe
         if (themeStore.mode === "light") {
             setStripeTheme("stripe")
         } else {
             setStripeTheme("night")
         }
-        //Create a paymentIntent as soon as the page loads up
+        // create a paymentIntent as soon as the page loads up
         fetch("/api/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
