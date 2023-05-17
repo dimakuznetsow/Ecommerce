@@ -59,7 +59,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
         <form onSubmit={handleSubmitForm} id='payment-form' className="">
             <LinkAuthenticationElement
                 id="link-authentication-element" />
-            <PaymentElement id='payment-element' options={{ layout: "tabs" }} />
+            <PaymentElement id='payment-element' options={{ layout: "auto" }} />
             <AddressElement id="address-element" options={{
                 mode: 'billing',
                 fields: {
