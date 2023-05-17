@@ -42,7 +42,7 @@ export default async function handler(
     amount: total,
     currency: "usd",
     status: "pending",
-    paymentIntentID: payment_intent_id,
+    paymentIntentId: payment_intent_id,
     products: {
       create: items.map((item) => ({
         name: item.name,
@@ -102,7 +102,7 @@ export default async function handler(
       automatic_payment_methods: { enabled: true },
     });
 
-    orderData.paymentIntentID = paymentIntent.id;
+    orderData.paymentIntentId = paymentIntent.id;
     const newOrder = await prisma.order.create({
       data: orderData,
     });
