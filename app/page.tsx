@@ -9,6 +9,7 @@ export default async function Home() {
   return (
     <>
       <Carousel />
+      <label htmlFor="my-modal-4" className="btn">open modal</label>
       <Categories />
     </>
   )
