@@ -57,7 +57,7 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
 
     return (
         <form onSubmit={handleSubmitForm} id='payment-form' className="">
-            <PaymentElement id='payment-element' options={{ layout: "accordion" }} />
+            <PaymentElement id='payment-element' options={{ layout: "tabs" }} />
             <AddressElement id="address-element" options={{
                 mode: 'billing',
             }} />

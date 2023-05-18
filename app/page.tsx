@@ -1,6 +1,7 @@
 
 import Categories from './components/Categories'
 import Carousel from './components/Carousel'
+import Modal from './components/Modal'
 
 
 
@@ -8,8 +9,11 @@ export default async function Home() {
 
   return (
     <>
-      <Carousel />
-      <Categories />
+      <div>
+        <Carousel />
+        <Modal />
+        <Categories />
+      </div>
     </>
   )
 }
