@@ -17,7 +17,7 @@ function Navbar({ user }: Session) {
 
     return (
         <nav className="flex justify-between items-center py-12 px-4 lg:px-48">
-            <ul className="flex items-center gap-12">
+            <ul className="flex items-center gap-8">
                 <Link href={"/"}>
                     <h1 className="text-primary text-4xl font-black">א<span className="text-4xl font-bold">leph</span></h1>
                 </Link>
@@ -25,7 +25,7 @@ function Navbar({ user }: Session) {
             </ul>
 
 
-            <ul className="flex items-center gap-12">
+            <ul className="flex items-center gap-8">
 
                 {/* toggle the cart */}
                 <li onClick={() => cartStore.toggleCart()} className="flex items-center text-3xl relative cursor-pointer">
