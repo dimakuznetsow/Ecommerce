@@ -8,18 +8,21 @@ import Cart from "./Cart"
 import { useCartStore } from "@/store"
 import { AiTwotoneShopping } from "react-icons/ai"
 import { AnimatePresence, motion } from "framer-motion"
-
-
-
+import Menu from "./Menu"
+import { useContext } from 'react';
+import { DataContext } from '../context';
 
 function Navbar({ user }: Session) {
     const cartStore = useCartStore()
 
     return (
         <nav className="flex justify-between items-center py-12 px-4 lg:px-48">
-            <Link href={"/"}>
-                <h1 className="text-primary text-4xl font-black">א<span className="text-4xl font-bold">leph</span></h1>
-            </Link>
+            <ul className="flex items-center gap-12">
+                <Link href={"/"}>
+                    <h1 className="text-primary text-4xl font-black">א<span className="text-4xl font-bold">leph</span></h1>
+                </Link>
+                <Menu />
+            </ul>
 
 
             <ul className="flex items-center gap-12">
@@ -45,7 +48,6 @@ function Navbar({ user }: Session) {
                         <button onClick={() => signIn()}>Sign in</button>
                     </li>
                 )}
-
                 {user && (
                     <li className="h-9">
                         <div className="dropdown dropdown-end cursor-pointer">
