@@ -22,14 +22,13 @@
     "date-fns": "^2.30.0",
     "framer-motion": "^10.12.8",
     "micro": "^10.0.1",
-
     "next": "^13.2.4",
     "prisma": "^4.13.0",
-
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "stripe": "^11.11.0",
+    "swr": "^2.1.5",
     "ts-node": "^10.9.1",
     "typescript": "5.0.4",
     "vercel": "^29.3.0",

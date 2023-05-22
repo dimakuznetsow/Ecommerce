@@ -2,18 +2,22 @@
 import Categories from './components/Categories'
 import Carousel from './components/Carousel'
 import Modal from './components/Modal'
+import Head from 'next/head'
 
 
 
-export default async function Home() {
+
+export default function Home() {
+
+
 
   return (
     <>
-      <div>
+      <main>
         <Carousel />
         <Modal />
         <Categories />
-      </div>
+      </main>
     </>
   )
 }

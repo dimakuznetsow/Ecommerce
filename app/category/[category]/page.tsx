@@ -1,47 +1,42 @@
+'use client'
+
 import { SearchParamType } from "@/types/SearchParamType"
-import Stripe from "stripe"
+import { useContext } from 'react';
+import { DataContext } from '../../context';
 import Product from "../../components/Product"
+import Head from "next/head";
+import { ContextType } from "@/types/ContextType";
 
 
 
 
-const getProducts = async () => {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-        apiVersion: "2022-11-15"
-    })
-    console.log(stripe)
-    const products = await stripe.products.list()
+
+export default function Category({ searchParams }: SearchParamType) {
+    const data = useContext(DataContext);
+    const products = (data as ContextType).products
+
     console.log(products)
 
-    const productsWithPrice = await Promise.all(
-        products.data.map(async (product) => {
-            const prices = await stripe.prices.list({ product: product.id })
-            return {
-                id: product.id,
-                name: product.name,
-                unit_amount: prices.data[0].unit_amount,
-                image: product.images[0],
-                currency: prices.data[0].currency,
-                description: product.description,
-                metadata: product.metadata
-            }
-        }
-        ))
-    return productsWithPrice
+    if ((data as ContextType).loading) {
+        return (
+            <main className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
 
-}
+            </main>
+        )
+    }
 
-export default async function Category({ searchParams }: SearchParamType) {
-    const products = await getProducts()
+
 
     const filteredProducts = products.filter(product => product.metadata.category === searchParams.category)
 
     return (
-        <main className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
-            {filteredProducts.map((product) => (
-                <Product {...product} key={product.id} />
-            ))}
-        </main>
+        <>
+            <main className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
+                {filteredProducts.map((product) => (
+                    <Product {...product} key={product.id} />
+                ))}
+            </main>
+        </>
     )
 }
 

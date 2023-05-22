@@ -1,30 +1,24 @@
-import Stripe from 'stripe'
+'use client'
+import { useContext } from 'react';
+import { DataContext } from '../context';
+import { ContextType } from "@/types/ContextType";
 import Link from 'next/link'
 
 
-const getCategories = async () => {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-        apiVersion: "2022-11-15"
-    })
-    const products = await stripe.products.list()
-    console.log(products)
+
+export default function Categories() {
+    const data = useContext(DataContext);
+    const uniqueCategories = new Set((data as ContextType).products?.map(product => product.metadata.category));
 
 
-    const categories = await Promise.all(
-        products.data.map(async (product) => {
-            return product.metadata.category
-        }
-        ))
+    console.log(data)
 
-    return categories
-
-}
-
-export default async function Categories() {
-    const categories = await getCategories()
-    const uniqueCategories = [...new Set(categories)] // create a new array with only unique categories
-
-
+    if ((data as ContextType).loading) {
+        return (
+            <section className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
+            </section>
+        )
+    }
     return (
         <>
             <div className='flex justify-between mx-4 lg:mx-48 items-end  mb-2' >
@@ -34,27 +28,23 @@ export default async function Categories() {
                 </Link> */}
 
             </div>
-            <main className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
-                {uniqueCategories.length > 0 && (
-                    <>
-                        {uniqueCategories.map((category) => {
-                            return (
-                                <Link href={{ pathname: `/category/${category}`, query: { category } }} key={category}>
-                                    <div className="z-0 rounded-lg">
-                                        <figure className='relative card'>
-                                            <img src={`https://ecommerce-aleph.s3.eu-west-1.amazonaws.com/${category}.webp`} alt={category.replace(/1/g, " ")} />
-                                            <div className="absolute px-4 py-3 text-base">
-                                                <h2 className="card-title text-gray-800">{category.toUpperCase().replace(/1/g, " ")}</h2>
-                                            </div>
-                                        </figure>
+            <section className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
+                {Array.from(uniqueCategories).map((category) => {
+                    return (
+                        <Link href={{ pathname: `/category/${category}`, query: { category } }} key={category}>
+                            <div className="z-0 rounded-xl">
+                                <figure className='relative card'>
+                                    <img src={`https://ecommerce-aleph.s3.eu-west-1.amazonaws.com/${category}.webp`} alt={category.replace(/1/g, " ")} />
+                                    <div className="absolute px-4 py-3 text-base">
+                                        <h2 className="card-title text-gray-800">{category.toUpperCase().replace(/1/g, " ")}</h2>
                                     </div>
-                                </Link>
-                            )
-                        })
-                        }
-                    </>
-                )}
-            </main>
+                                </figure>
+                            </div>
+                        </Link>
+                    )
+                })
+                }
+            </section>
         </>
 
     )

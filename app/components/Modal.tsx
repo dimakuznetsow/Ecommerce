@@ -9,7 +9,7 @@ function Modal() {
 
                 <label
                     htmlFor="my-modal-6"
-                    className="flex items-center justify-between bg-base-300 text-base-content text-lg w-full py-4 px-6 cursor-pointer"
+                    className="flex items-center justify-between bg-base-200 text-base-content text-lg w-full py-4 px-4 cursor-pointer"
                 >
                     Here's 30% off your first order. Really! Check it out
                     <IoChevronForward />
