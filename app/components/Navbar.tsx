@@ -9,11 +9,23 @@ import { useCartStore } from "@/store"
 import { AiTwotoneShopping } from "react-icons/ai"
 import { AnimatePresence, motion } from "framer-motion"
 import Menu from "./Menu"
-import { useContext } from 'react';
-import { DataContext } from '../context';
+import { ChangeEvent, FormEvent } from 'react';
+import { useRouter } from "next/navigation"
 
 function Navbar({ user }: Session) {
     const cartStore = useCartStore()
+    const router = useRouter();
+
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const userInput = event.target.value;
+        if (userInput.length > 0) {
+            router.push(`/products/${userInput}?product=${userInput}`);
+        }
+    };
+    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+        // Additional logic if needed
+    };
 
     return (
         <nav className="flex justify-between items-center py-12 px-4 lg:px-48">
@@ -23,7 +35,16 @@ function Navbar({ user }: Session) {
                 </Link>
                 <Menu />
             </ul>
-
+            <div className="hidden sm:block form-control">
+                <form onSubmit={handleSubmit}>
+                    <input
+                        onChange={handleInputChange}
+                        type="text"
+                        placeholder="Find products"
+                        className="input input-bordered w-72 focus:outline-none"
+                    />
+                </form >
+            </div>
 
             <ul className="flex items-center gap-8">
 
@@ -61,7 +82,7 @@ function Navbar({ user }: Session) {
                             />
                             <ul
                                 tabIndex={0}
-                                className="dropdown-content menu  p-4 space-y-4 rounded-box w-72 bg-base-200 shadow"
+                                className="dropdown-content menu p-4 space-y-4 rounded-box w-72 bg-base-200 shadow"
                             >
 
                                 <Link

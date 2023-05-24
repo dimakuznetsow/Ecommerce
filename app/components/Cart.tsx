@@ -151,9 +151,25 @@ function Cart() {
                                     : "N/A"}
                             </p>
                         </div>
+                        <div className="divider"></div>
+
+                        <div className="md:flex justify-between items-center my-2 text-lg font-bold">
+                            <p className="mb-2 md:mb-0">
+                                PROMOCODE:
+                            </p>
+                            <div className="form-control">
+                                <div className="input-group">
+                                    <input type="text" placeholder="Enter code" className="input input-bordered w-full font-normal focus:outline-none" />
+                                    <button className="btn">
+                                        Apply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <button
                             onClick={() => cartStore.setCheckout("checkout")}
-                            className="py-2 mt-4 bg-primary text-white w-full rounded-sm"
+                            className="btn btn-primary w-full mt-4"
                         >
                             Checkout
                         </button>
