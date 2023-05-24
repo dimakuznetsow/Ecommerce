@@ -11,11 +11,11 @@ import { ContextType } from "@/types/ContextType";
 
 
 
+
 export default function Category({ searchParams }: SearchParamType) {
     const data = useContext(DataContext);
     const products = (data as ContextType).products
 
-    console.log(products)
 
     if ((data as ContextType).loading) {
         return (
@@ -28,6 +28,16 @@ export default function Category({ searchParams }: SearchParamType) {
 
 
     const filteredProducts = products.filter(product => product.metadata.category === searchParams.category)
+
+    if (searchParams.category === 'all') {
+        return (
+            <main className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
+                {products.map((product) => (
+                    <Product {...product} key={product.id} />
+                ))}
+            </main>
+        )
+    }
 
     return (
         <>

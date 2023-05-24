@@ -61,7 +61,7 @@ function Navbar({ user }: Session) {
                             />
                             <ul
                                 tabIndex={0}
-                                className="dropdown-content menu  p-4 space-y-4 rounded-box w-72 bg-base-200 shadow"
+                                className="dropdown-content menu p-4 space-y-4 rounded-box w-72 bg-base-200 shadow"
                             >
 
                                 <Link

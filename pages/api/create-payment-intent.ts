@@ -59,6 +59,7 @@ export default async function handler(
     const current_intent = await stripe.paymentIntents.retrieve(
       payment_intent_id
     );
+
     if (current_intent) {
       const updated_intent = await stripe.paymentIntents.update(
         payment_intent_id,

@@ -23,7 +23,6 @@ function CheckoutForm({ clientSecret }: { clientSecret: string }) {
             : totalPriceWithout899;
 
 
-    const formatedPrice = formatPrice(totalPrice)
 
     useEffect(() => {
         if (!stripe) {
