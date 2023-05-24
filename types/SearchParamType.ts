@@ -9,6 +9,7 @@ type SearchParams = {
   quantity?: number | 1;
   description: string | null;
   category: string;
+  product: string;
   brand: string;
   carbohydrate: number;
   country: string;

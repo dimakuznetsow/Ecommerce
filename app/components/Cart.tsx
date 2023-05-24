@@ -159,7 +159,7 @@ function Cart() {
                             </p>
                             <div className="form-control">
                                 <div className="input-group">
-                                    <input type="text" placeholder="Enter code" className="input input-bordered w-full font-normal" />
+                                    <input type="text" placeholder="Enter code" className="input input-bordered w-full font-normal focus:outline-none" />
                                     <button className="btn">
                                         Apply
                                     </button>
