@@ -23,13 +23,13 @@ export default function Categories() {
                 </div>
                 <section className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
                     <div className="z-0 rounded-xl">
-                        <div className="bg-base-200 w-80 h-40 rounded-2xl animate-pulse"></div>
+                        <div className="bg-base-200 w-full h-56 md:h-40 rounded-2xl animate-pulse"></div>
                     </div>
                     <div className="z-0 rounded-xl">
-                        <div className="bg-base-200 w-80 h-40 rounded-2xl animate-pulse"></div>
+                        <div className="bg-base-200 w-full h-56 md:h-40 rounded-2xl animate-pulse"></div>
                     </div>
                     <div className="z-0 rounded-xl">
-                        <div className="bg-base-200 w-80 h-40 rounded-2xl animate-pulse"></div>
+                        <div className="bg-base-200 w-full h-56 md:h-40 rounded-2xl animate-pulse"></div>
                     </div>
                 </section>
             </>
