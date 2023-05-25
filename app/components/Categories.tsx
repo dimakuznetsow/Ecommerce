@@ -15,13 +15,29 @@ export default function Categories() {
 
     if ((data as ContextType).loading) {
         return (
-            <section className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
-            </section>
+            <>
+                <div className='flex justify-between items-center mx-4 lg:mx-48 mb-2' >
+                    <div className="w-48 h-9 rounded-2xl bg-base-200 animate-pulse"></div>
+                    <div className="w-12 h-6 rounded-3xl bg-base-200 animate-pulse"></div>
+
+                </div>
+                <section className='grid grid-cols-fluid gap-8 px-4 lg:px-48 mb-10 z-0'>
+                    <div className="z-0 rounded-xl">
+                        <div className="bg-base-200 w-80 h-40 rounded-2xl animate-pulse"></div>
+                    </div>
+                    <div className="z-0 rounded-xl">
+                        <div className="bg-base-200 w-80 h-40 rounded-2xl animate-pulse"></div>
+                    </div>
+                    <div className="z-0 rounded-xl">
+                        <div className="bg-base-200 w-80 h-40 rounded-2xl animate-pulse"></div>
+                    </div>
+                </section>
+            </>
         )
     }
     return (
         <>
-            <div className='flex justify-between items-center mx-4 lg:mx-48 items-end  mb-2' >
+            <div className='flex justify-between items-center mx-4 lg:mx-48 mb-2' >
                 <h1 className='text-3xl font-black'>SMALL BITES:</h1>
                 <Link href={{ pathname: `/category/all`, query: { category: "all" } }}>
                     <div className="badge badge-outline">All ></div>
