@@ -20,7 +20,7 @@ function AddCart({ id, name, unit_amount, image, quantity }: AddCartType) {
             <button
                 onClick={handleAddToCart}
                 disabled={added}
-                className="my-4 mx-4 btn btn-wide btn-primary"
+                className="my-4 mx-4 btn btn-primary btn-wide no-animation"
             >
                 {!added ? "Add to cart" : "Adding to cart"}
             </button>

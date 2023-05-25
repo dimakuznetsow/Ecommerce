@@ -21,6 +21,9 @@ function Navbar({ user }: Session) {
         if (userInput.length > 0) {
             router.push(`/products/${userInput}?product=${userInput}`);
         }
+        if (userInput.length === 0) {
+            router.push("/");
+        }
     };
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
