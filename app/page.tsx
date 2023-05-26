@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <main>
         <Carousel />
-        <Modal />
+        {/* <Modal /> */}
         <Categories />
       </main>
     </>

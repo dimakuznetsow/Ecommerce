@@ -151,9 +151,9 @@ function Cart() {
                                     : "N/A"}
                             </p>
                         </div>
-                        <div className="divider"></div>
+                        {/* <div className="divider"></div>
 
-                        <div className="md:flex justify-between items-center my-2 text-lg font-bold">
+                         <div className="md:flex justify-between items-center my-2 text-lg font-bold">
                             <p className="mb-2 md:mb-0">
                                 PROMOCODE:
                             </p>
@@ -165,7 +165,7 @@ function Cart() {
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <button
                             onClick={() => cartStore.setCheckout("checkout")}
