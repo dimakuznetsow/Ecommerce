@@ -106,7 +106,7 @@ function Footer() {
                 </div>
             </footer>
             < footer className="bg-base-300 block lg:hidden" >
-                <div className="flex justify-around mx-4 py-4">
+                <div className="flex justify-around px-4 py-4">
                     {/* contacts */}
                     <ul className="">
                         <div className="font-semibold mb-2">Contact us</div>
