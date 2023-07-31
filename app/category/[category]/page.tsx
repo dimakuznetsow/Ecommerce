@@ -31,20 +31,31 @@ export default function Category({ searchParams }: SearchParamType) {
 
     if (searchParams.category === 'all') {
         return (
-            <main className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
-                {products.map((product) => (
-                    <Product {...product} key={product.id} />
-                ))}
+            <main >
+                <h1 className='mx-4 lg:mx-48 mb-6 text-2xl md:text-3xl font-black'>
+                    {searchParams.category.toUpperCase().replace(/1/g, " ")}
+                </h1>
+                <section className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
+                    {products.map((product) => (
+                        <Product {...product} key={product.id} />
+                    ))}
+                </section>
+
             </main>
         )
     }
 
     return (
         <>
-            <main className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
-                {filteredProducts.map((product) => (
-                    <Product {...product} key={product.id} />
-                ))}
+            <main >
+                <h1 className='mx-4 lg:mx-48 mb-6 text-2xl md:text-3xl font-black'>
+                    {searchParams.category.toUpperCase().replace(/1/g, " ")}
+                </h1>
+                <section className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
+                    {filteredProducts.map((product) => (
+                        <Product {...product} key={product.id} />
+                    ))}
+                </section>
             </main>
         </>
     )
