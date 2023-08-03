@@ -1,6 +1,7 @@
 'use client'
 
 import { SearchParamType } from "@/types/SearchParamType"
+import { ProductType } from "@/types/ProductType"
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../context';
 import Product from "../../components/Product"
@@ -11,10 +12,16 @@ export default function Category({ searchParams }: SearchParamType) {
     const data = useContext(DataContext);
     const products = (data as ContextType).products
     const [sorting, setSorting] = useState("Recommended");
-    const [sortedProducts, setSortedProducts] = useState(products);
+    const [sortedProducts, setSortedProducts] = useState<ProductType[]>(products);
 
     const filteredProducts = products?.filter(product => product.metadata.category === searchParams.category)
-    const [sortedFilteredProducts, setSortedFilteredProducts] = useState(filteredProducts);
+    const [sortedFilterProducts, setSortedFilterProducts] = useState<ProductType[]>(filteredProducts)
+
+    useEffect(() => {
+        setSortedProducts(products);
+    }, [products]);
+
+    // REFRESHING FILTERED PRODUCTS NOT WORKING!!!
 
 
     const handleSorting = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -32,19 +39,18 @@ export default function Category({ searchParams }: SearchParamType) {
         }
     }
 
-    const handleFilteredSorting = (event: ChangeEvent<HTMLSelectElement>) => {
+    const handleFilterSorting = (event: ChangeEvent<HTMLSelectElement>) => {
         const selectValue = event.target.value
         setSorting(selectValue)
         let tempProducts = [...filteredProducts];
-        // NOT WORKING
         if (selectValue === "Recommended") {
-            setSortedFilteredProducts(filteredProducts)
+            setSortedFilterProducts(filteredProducts)
         }
         if (selectValue === "LowToHigh") {
-            setSortedFilteredProducts(tempProducts.sort((a, b) => a.unit_amount! - b.unit_amount!))
+            setSortedFilterProducts(tempProducts.sort((a, b) => a.unit_amount! - b.unit_amount!))
         }
         if (selectValue === "HighToLow") {
-            setSortedFilteredProducts(tempProducts.sort((a, b) => b.unit_amount! - a.unit_amount!))
+            setSortedFilterProducts(tempProducts.sort((a, b) => b.unit_amount! - a.unit_amount!))
         }
     }
 
@@ -81,6 +87,8 @@ export default function Category({ searchParams }: SearchParamType) {
         )
     }
 
+    console.log("sortedFilterProducts: ", sortedFilterProducts)
+
     return (
         <>
             <main >
@@ -89,16 +97,16 @@ export default function Category({ searchParams }: SearchParamType) {
                         {searchParams?.category?.toUpperCase().replace(/1/g, " ")}
                     </h1>
                     <select
-                        onChange={handleFilteredSorting}
+                        onChange={handleFilterSorting}
                         value={sorting}
                         className="select select-bordered w-xs mx-4 lg:mx-48 mb-6 focus:outline-none">
-                        <option value={" "}>Recommended</option>
+                        <option value={"Recommended"}>Recommended</option>
                         <option value={"LowToHigh"}>Price Low to High</option>
                         <option value={"HighToLow"}>Price High to Low</option>
                     </select>
                 </nav>
                 <section className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
-                    {sortedFilteredProducts?.map((product) => (
+                    {sortedFilterProducts?.map((product) => (
                         <Product {...product} key={product.id} />
                     ))}
                 </section>
