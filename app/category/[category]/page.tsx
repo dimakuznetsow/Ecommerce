@@ -21,9 +21,6 @@ export default function Category({ searchParams }: SearchParamType) {
         setSortedProducts(products);
     }, [products]);
 
-    // REFRESHING FILTERED PRODUCTS NOT WORKING!!!
-
-
     const handleSorting = (event: ChangeEvent<HTMLSelectElement>) => {
         const selectValue = event.target.value
         setSorting(selectValue)
@@ -106,7 +103,7 @@ export default function Category({ searchParams }: SearchParamType) {
                     </select>
                 </nav>
                 <section className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
-                    {sortedFilterProducts?.map((product) => (
+                    {(sortedFilterProducts || filteredProducts)?.map((product) => (
                         <Product {...product} key={product.id} />
                     ))}
                 </section>
