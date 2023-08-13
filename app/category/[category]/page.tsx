@@ -84,7 +84,6 @@ export default function Category({ searchParams }: SearchParamType) {
         )
     }
 
-    console.log("sortedFilterProducts: ", sortedFilterProducts)
 
     return (
         <>
@@ -103,7 +102,7 @@ export default function Category({ searchParams }: SearchParamType) {
                     </select>
                 </nav>
                 <section className='grid grid-cols-fluid gap-12 mx-4 lg:mx-48 justify-center mb-10'>
-                    {(sortedFilterProducts || filteredProducts)?.map((product) => (
+                    {(sortedFilterProducts ?? filteredProducts)?.map((product) => (
                         <Product {...product} key={product.id} />
                     ))}
                 </section>
