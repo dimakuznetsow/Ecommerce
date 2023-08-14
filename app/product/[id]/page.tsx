@@ -76,7 +76,16 @@ function Product({ searchParams }: SearchParamType) {
                             <div className="mt-2">
                                 <div>
                                     <h2 className="text-sm text-gray-500">Brand, manufacturer</h2>
-                                    <p>{searchParams.brand}</p>
+                                    <Link
+                                        className="text-primary"
+                                        href={{
+                                            pathname: `/brand/${searchParams.brand}`,
+                                            query: { brand: searchParams.brand }
+                                        }}
+                                        key={searchParams.brand}>
+                                        {searchParams.brand.charAt(0).toUpperCase() + searchParams.brand.slice(1).replace(/1/g, " ")}
+                                    </Link>
+
                                 </div>
                                 <div className="mt-2">
                                     <h2 className="text-sm text-gray-500">Country</h2>
